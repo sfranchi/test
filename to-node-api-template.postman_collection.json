@@ -1,0 +1,24 @@
+{
+	"info": {
+		"_postman_id": "fa5a6b20-5677-4984-bb62-fee9a1f1a45c",
+		"name": "to-node-api-template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost",
+					"host": [
+						"localhost"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

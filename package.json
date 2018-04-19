@@ -2,22 +2,22 @@
   "name": "node-api-template",
   "version": "1.0.0",
   "description": "Basic template for restful API written in node.js",
-  "main": "./src/server.js",
   "scripts": {
-    "dev": "nodemon run ./src/server.js",
-    "debug": "nodemon run ./src/server.js"
+    "dev": "cross-env NODE_ENV=dev node ./src/server.js",
+    "debug": "cross-env NODE_ENV=debug nodemon --inspect ./src/server.js",
+    "test": "mocha"
   },
   "author": "Lagash - Tech Office",
   "license": "ISC",
   "dependencies": {
     "applicationinsights": "1.0.2",
     "async": "2.6.0",
-    "crypto": "1.0.1",
     "dotenv": "5.0.1",
     "dotenv-safe": "5.0.1",
     "fluent-validator": "1.1.0",
     "lodash": "4.17.5",
     "moment": "2.22.0",
+    "mongoose": "5.0.15",
     "mssql": "4.1.0",
     "node-env": "0.1.6",
     "restify": "7.1.1",
@@ -28,14 +28,13 @@
   },
   "devDependencies": {
     "chai": "4.1.2",
+    "cross-env": "5.1.4",
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-config-xo-space": "0.18.0",
     "eslint-plugin-import": "2.10.0",
     "eslint-plugin-react": "7.7.0",
-    "husky": "0.14.3",
-    "jest": "22.4.3",
-    "nodemon": "1.17.3",
-    "supertest": "3.0.0"
+    "mocha": "5.1.1",
+    "nodemon": "1.17.3"
   }
 }
