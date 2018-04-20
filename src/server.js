@@ -1,17 +1,27 @@
 // Versión 1.0.0.0
 
 require('dotenv-safe').config();
+const API_MIN_VERSION = '1.0.0.0';
+const API_CURRENT_VERSION = '2.0.0.0';
 
 // Restify server setup
 const restify = require('restify');
 const restify_errors = require('restify-errors');
 const server = restify.createServer({
-	name : "Sample API Server v:" + process.env.CURRENT_API_VERSION,
+	name : "Sample API Server v:" + API_CURRENT_VERSION,
 	acceptable: ['application/json'],
-	versions: ['1.9.9.9', '2.9.9.9'],
-	version: '2.0.0.0',
+	versions: [API_MIN_VERSION, API_CURRENT_VERSION],
+	version: API_CURRENT_VERSION,
 	rejectUnauthorized: true
 });
+const sqlserver_router = require('../routes/sqlserver_routes');
+const mongo_router = require('../routes/mongo_routes');
+const sample_methods_router = require('../routes/sample_methods_routes');
+
+// Configure server routing
+sqlserver_router.applyRoutes(server, '/sqlserver');
+mongo_router.applyRoutes(server, '/mongodb');
+sample_methods_router.applyRoutes(server, '/samples');
 
 // Server behaviour configuration
 server.use(restify.plugins.acceptParser(server.acceptable));
@@ -34,40 +44,6 @@ server.on('uncaughtException', function(req, res, route, err) {
 	var err = new restify_errors.InternalServerError('Error inesperado (\'%s\') en ruta \'%s\'', err, route);
 	res.send(err);
 });
-
-// CRUD methods
-function sendv1 (req, res, next) {
-	res.setHeader('Content-type', 'application/json');
-	res.writeHead(200);
-	res.end(JSON.stringify({id:1, version: req.headers['accept-version']}));
-	return next();
-}
-
-function sendv2 (req, res, next) {
-	res.setHeader('Content-type', 'application/json');
-	res.writeHead(200);
-	res.end(JSON.stringify({id:2, version: req.headers['accept-version']}));
-	return next();
-}
-
-server.get('/hello/:name', restify.plugins.conditionalHandler([
-	{ version: '1.1.4', handler: sendv1 },
-	{ version: '2.2.3', handler: sendv2 }
-  ]));
-
-server.get('/ss1/:name', function(req, res, next) {
-	res.setHeader('Content-type', 'application/json');
-	res.writeHead(200);
-	res.end(JSON.stringify({version: req.headers['accept-version']}));
-	return next();
-})
-
-server.get({path: '/ss2/:name', version:'2.0.0'}, (req, res, next) => {
-	res.setHeader('Content-type', 'application/json');
-	res.writeHead(200);
-	res.end(JSON.stringify({version: req.headers['accept-version']}));
-	return next();
-})
 
 // start the server
 server.listen(80, () => {

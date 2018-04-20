@@ -4,9 +4,10 @@
 El objetivo de este template es proveer de un punto de partida para cualquier API RESTful que necesitemos desarrollar. En ella intentamos plasmar las prácticas recomendadas desde la Tech Office en cuanto a componentes a utilizar, funcionalidades básicas requeridas y mecanismos típicos de manejo de errores, tracing, versioning
 
 ### Características principales de este proyecto:
-* Soporte de versionado del API (semver) mediante utilización de un header (accept-version)
+* Implementa versionado del API (semver) mediante utilización de un header (accept-version)
 * Implementa el uso de Azure Application Insights para la generación de eventos y trazas
-* Implementa un CRUD completo en SQLServer y MongoDB accesibles vía versioning
+* Implementa el uso de routers individuales para diferentes sets de métodos, con namespacing independiente opcional via prefixing
+* Implementa un CRUD completo en SQLServer y MongoDB accesibles vía prefixing
 * Implementa la autorización mediante un token (en header Authorization)
 * Implementa la restricción de origen mediante detección de IP
 * Implementa validación del modelo de datos recibidos
