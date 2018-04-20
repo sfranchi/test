@@ -1,7 +1,7 @@
 {
   "name": "node-api-template",
   "version": "1.0.0",
-  "description": "Basic template for restful API written in node.js",
+  "description": "Basic template for RESTful API written in node.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev node ./src/server.js",
     "debug": "cross-env NODE_ENV=debug nodemon --inspect ./src/server.js",
