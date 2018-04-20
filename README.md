@@ -12,6 +12,8 @@ El objetivo de este template es proveer de un punto de partida para cualquier AP
 * Implementa la restricción de origen mediante detección de IP
 * Implementa validación del modelo de datos recibidos
 * Implementa throttling
+* Implementa utilización de secrets desde Azure Key Vault
+* Implementa lectura y escritura de 
 
 ### Requisitos - Setup
 Ejecutar los siguientes comandos para poder ejecutar el template:
