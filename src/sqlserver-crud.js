@@ -1,3 +1,5 @@
+'use strict';
+
 var exports = module.exports = {};
 const sqlserver = require('mssql');
 

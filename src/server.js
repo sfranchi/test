@@ -1,18 +1,20 @@
 // Versión 1.0.0.0
+'use strict';
 
 require('dotenv-safe').config();
-const API_MIN_VERSION = '1.0.0.0';
-const API_CURRENT_VERSION = '2.0.0.0';
+const API_MIN_VERSION = '1.0.0';
+const API_CURRENT_VERSION = '2.0.0';
 
 // Restify server setup
 const restify = require('restify');
 const restify_errors = require('restify-errors');
 const server = restify.createServer({
-	name : "Sample API Server v:" + API_CURRENT_VERSION,
+	name : "Sample RESTful API Server v:" + API_CURRENT_VERSION,
 	acceptable: ['application/json'],
 	versions: [API_MIN_VERSION, API_CURRENT_VERSION],
 	version: API_CURRENT_VERSION,
-	rejectUnauthorized: true
+	rejectUnauthorized: true,
+	ignoreTrailingSlash: true
 });
 const sqlserver_router = require('../routers/sqlserver_routes');
 const mongo_router = require('../routers/mongo_routes');
