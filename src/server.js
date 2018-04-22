@@ -14,9 +14,9 @@ const server = restify.createServer({
 	version: API_CURRENT_VERSION,
 	rejectUnauthorized: true
 });
-const sqlserver_router = require('../routes/sqlserver_routes');
-const mongo_router = require('../routes/mongo_routes');
-const sample_methods_router = require('../routes/sample_methods_routes');
+const sqlserver_router = require('../routers/sqlserver_routes');
+const mongo_router = require('../routers/mongo_routes');
+const sample_methods_router = require('../routers/sample_methods_routes');
 
 // Configure server routing
 sqlserver_router.applyRoutes(server, '/sqlserver');
