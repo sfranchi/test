@@ -13,7 +13,7 @@ El objetivo de este template es proveer de un punto de partida para cualquier AP
 * Implementa validación del modelo de datos recibidos
 * Implementa throttling
 * Implementa utilización de secrets desde Azure Key Vault
-* Implementa lectura y escritura de 
+* Implementa lectura y escritura de Azure Storage
 
 ### Requisitos - Setup
 Ejecutar los siguientes comandos para poder ejecutar el template:
