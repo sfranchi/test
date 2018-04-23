@@ -5,12 +5,24 @@ require('dotenv-safe').config();
 const API_MIN_VERSION = '1.0.0';
 const API_CURRENT_VERSION = '2.0.0';
 
+// Application insights support
+let appInsights = require("applicationinsights");
+appInsights.setup()
+	.setAutoDependencyCorrelation(true)
+	.setAutoCollectRequests(true)
+	.setAutoCollectPerformance(true)
+	.setAutoCollectExceptions(true)
+	.setAutoCollectDependencies(true)
+	.setAutoCollectConsole(true)
+	.setUseDiskRetryCaching(true)
+	.start();
+
 // Restify server setup
 const restify = require('restify');
 const restify_errors = require('restify-errors');
 const server = restify.createServer({
 	name : "Sample RESTful API Server v:" + API_CURRENT_VERSION,
-	acceptable: ['application/json'],
+	acceptable: 'application/json',
 	versions: [API_MIN_VERSION, API_CURRENT_VERSION],
 	version: API_CURRENT_VERSION,
 	rejectUnauthorized: true,
@@ -38,6 +50,9 @@ server.use(restify.plugins.throttle({
 
 // Server events
 server.on('VersionNotAllowed', function (req, res, callback) {
+	appInsights.setup().start();
+	appInsights.defaultClient.trackEvent({name: "Invalid API Version", properties: {requestedVersion: req.headers['accept-version']}});
+
 	var err = new restify_errors.BadRequestError('Versión no soportada (%s)', req.headers['accept-version']);
 	res.send(err);
 });
@@ -50,4 +65,6 @@ server.on('uncaughtException', function(req, res, route, err) {
 // start the server
 server.listen(80, () => {
 	console.log('%s listening at %s - Running on \'%s\' environment', server.name, server.url, process.env.NODE_ENV);
+	appInsights.defaultClient.trackEvent({name: "Server startup", properties: {date: Date.now()}});
 })
+
