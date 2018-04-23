@@ -4,16 +4,16 @@
 El objetivo de este template es proveer de un punto de partida para cualquier API RESTful que necesitemos desarrollar. En ella intentamos plasmar las prácticas recomendadas desde la Tech Office en cuanto a componentes a utilizar, funcionalidades básicas requeridas y mecanismos típicos de manejo de errores, tracing, versioning
 
 ### Características principales de este proyecto:
-* Implementa versionado del API (semver) mediante utilización de un header (accept-version)
-* Implementa el uso de Azure Application Insights para la generación de eventos y trazas
-* Implementa el uso de routers individuales para diferentes sets de métodos, con namespacing independiente opcional via prefixing
-* Implementa un CRUD completo en SQLServer y MongoDB accesibles vía prefixing
-* Implementa la autorización mediante un token (en header Authorization)
-* Implementa la restricción de origen mediante detección de IP
-* Implementa validación del modelo de datos recibidos
-* Implementa throttling
-* Implementa utilización de secrets desde Azure Key Vault
-* Implementa lectura y escritura de Azure Storage
+- [x] Implementa versionado del API (semver) mediante utilización de un header (accept-version)
+- [x] Implementa el uso de Azure Application Insights para la generación de eventos y trazas
+- [x] Implementa el uso de routers individuales para diferentes sets de métodos, con namespacing independiente opcional via prefixing
+- [x] (WIP) Implementa un CRUD completo en SQLServer y MongoDB accesibles vía prefixing
+- [x] Implementa la autorización mediante un token (en header Authorization)
+- [ ] Implementa la restricción de origen mediante detección de IP
+- [ ] Implementa validación del modelo de datos recibidos
+- [ ] Implementa throttling
+- [ ] Implementa utilización de secrets desde Azure Key Vault
+- [ ] Implementa lectura y escritura de Azure Storage
 
 ### Requisitos - Setup
 Ejecutar los siguientes comandos para poder ejecutar el template:
