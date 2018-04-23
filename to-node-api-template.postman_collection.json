@@ -6,15 +6,51 @@
 	},
 	"item": [
 		{
-			"name": "Root",
+			"name": "samples/math",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "accept-version",
+						"value": "1.0.0"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": "localhost",
+					"raw": "localhost/samples/math/20/10",
 					"host": [
 						"localhost"
+					],
+					"path": [
+						"samples",
+						"math",
+						"20",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "samples/case",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept-version",
+						"value": "1"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/samples/case/ChangeTEXTcasE",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"samples",
+						"case",
+						"ChangeTEXTcasE"
 					]
 				}
 			},

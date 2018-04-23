@@ -29,7 +29,7 @@ exports.add = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a+b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) + Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "add", properties: {a: req.params.a, b: req.params.b}});
 
     return next();
@@ -40,7 +40,7 @@ exports.substract = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a-b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) - Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "substract", properties: {a: req.params.a, b: req.params.b}});
     return next();
 };
@@ -50,7 +50,7 @@ exports.multiply = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a*b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) * Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "multiply", properties: {a: req.params.a, b: req.params.b}});
     return next();
 };
@@ -60,7 +60,7 @@ exports.divide = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a/b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) / Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "divide", properties: {a: req.params.a, b: req.params.b}});
     return next();
 };
@@ -70,7 +70,7 @@ exports.divideHTML = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'text/html');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a/b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) / Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "divideHTML", properties: {a: req.params.a, b: req.params.b}});
     return next();
 };
@@ -80,7 +80,7 @@ exports.divideJSON = function(req, res, next) {
     var b = req.params.b;
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({result: a/b, version: req._version}));
+    res.end(JSON.stringify({result: Number.parseInt(a) / Number.parseInt(b), version: req._version}));
     appInsights.defaultClient.trackEvent({name: "divideJSON", properties: {a: req.params.a, b: req.params.b}});
     return next();
 };
