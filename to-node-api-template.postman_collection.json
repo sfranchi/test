@@ -13,6 +13,10 @@
 					{
 						"key": "accept-version",
 						"value": "1.0.0"
+					},
+					{
+						"key": "Authorization",
+						"value": "secret-key"
 					}
 				],
 				"body": {},
@@ -39,6 +43,10 @@
 					{
 						"key": "accept-version",
 						"value": "1"
+					},
+					{
+						"key": "Authorization",
+						"value": "some-key-value"
 					}
 				],
 				"body": {},
@@ -51,6 +59,63 @@
 						"samples",
 						"case",
 						"ChangeTEXTcasE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sqlserver/entity",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "something"
+					},
+					{
+						"key": "accept-version",
+						"value": "1.4"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/sqlserver/entity",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"sqlserver",
+						"entity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mongodb/entity",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "anything"
+					},
+					{
+						"key": "",
+						"value": "1.0",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/mongodb/entity",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"mongodb",
+						"entity"
 					]
 				}
 			},
