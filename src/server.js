@@ -2,6 +2,7 @@
 'use strict';
 
 require('dotenv-safe').config();
+const moment = require('moment');
 const API_MIN_VERSION = '1.0.0';
 const API_CURRENT_VERSION = '2.0.0';
 
@@ -48,12 +49,24 @@ server.use(restify.plugins.throttle({
 	ip: true
 }));
 
+// Authorization middleware
+server.use(function authenticate(req, res, next) {
+	// Validate as appropriate...
+	if (req.header('Authorization')) {
+		return next();
+	} else {
+		var err = new restify_errors.UnauthorizedError('Acceso no autorizado');
+		appInsights.defaultClient.trackEvent({name: 'Acceso no autorizado', properties: {path: req.getPath(), ip: req.connection.remoteAddress}});
+
+		res.send(err);	
+	}
+});
+
 // Server events
 server.on('VersionNotAllowed', function (req, res, callback) {
-	appInsights.setup().start();
-	appInsights.defaultClient.trackEvent({name: "Invalid API Version", properties: {requestedVersion: req.headers['accept-version']}});
-
+	appInsights.defaultClient.trackEvent({name: 'Versión inválida de API solicitada', properties: {requestedVersion: req.headers['accept-version']}});
 	var err = new restify_errors.BadRequestError('Versión no soportada (%s)', req.headers['accept-version']);
+
 	res.send(err);
 });
 
@@ -65,6 +78,6 @@ server.on('uncaughtException', function(req, res, route, err) {
 // start the server
 server.listen(80, () => {
 	console.log('%s listening at %s - Running on \'%s\' environment', server.name, server.url, process.env.NODE_ENV);
-	appInsights.defaultClient.trackEvent({name: "Server startup", properties: {date: Date.now()}});
+	appInsights.defaultClient.trackEvent({name: "Server startup", properties: {version: server.version, date: moment.utc().format()}});
 })
 
