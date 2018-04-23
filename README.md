@@ -9,6 +9,7 @@ El objetivo de este template es proveer de un punto de partida para cualquier AP
 - [x] Implementa el uso de routers individuales para diferentes sets de métodos, con namespacing independiente opcional via prefixing
 - [x] \(WIP\) Implementa un CRUD completo en SQLServer y MongoDB accesibles vía prefixing
 - [x] Implementa la autorización mediante un token (en header Authorization)
+- [ ] Documentación del API vía Swagger \(Hub?\)
 - [ ] Implementa la restricción de origen mediante detección de IP
 - [ ] Implementa validación del modelo de datos recibidos
 - [ ] Implementa throttling
@@ -46,3 +47,8 @@ npm run debug
 npm run test
 ```
 
+## ToDo
+1. Extraer el 100% de la relación con Application Insights a un módulo autónomo
+2. Crear helper para manejo de retornos HTTP (status + headers + data)
+
+## Wish list
