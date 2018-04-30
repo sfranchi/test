@@ -1,7 +1,7 @@
 // Versión 1.0.0.0
 'use strict';
 
-require('dotenv-safe').config();
+require('dotenv').config();
 const moment = require('moment');
 const API_MIN_VERSION = '1.0.0';
 const API_CURRENT_VERSION = '2.0.0';

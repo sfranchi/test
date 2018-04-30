@@ -1,6 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const mongoClient = require('mongodb').MongoClient;
 
 var _create = function(req, res, next) {
 };
